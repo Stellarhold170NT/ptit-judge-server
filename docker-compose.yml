@@ -1,13 +1,17 @@
-version: '3.8'
+version: "3.9"
 
 services:
   judge-server:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: stellarhold170nt/ptit-judge-server:latest
     container_name: judge-server
+    restart: unless-stopped
+
     ports:
-      - "2230:2230"
-      - "2240:2240"
+      - "2230:2230" # REST + Web UI + SOAP
+      - "2240:2240" # gRPC
+
     volumes:
       - ./data:/app/data
+
+    environment:
+      - TZ=Asia/Ho_Chi_Minh
