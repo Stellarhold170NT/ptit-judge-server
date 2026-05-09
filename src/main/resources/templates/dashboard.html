@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="vi">
+<head th:replace="~{layout :: head('Dashboard - PTIT Judge')}"></head>
+<body class="bg-dark text-light">
+<nav th:replace="~{layout :: nav(${loggedIn}, ${displayName})}"></nav>
+
+<div class="container mt-4">
+    <!-- Welcome Section -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card card-glass">
+                <div class="card-body p-4">
+                    <h1 class="fw-bold mb-1">
+                        <span class="brand-text">PTIT Judge</span>
+                        <span class="text-muted fs-4 ms-2">Luyện tập</span>
+                    </h1>
+                    <p class="text-muted mb-0" th:if="${loggedIn}">
+                        Chào mừng <span class="text-accent fw-semibold" th:text="${displayName}">User</span>!
+                        <span class="ms-2 badge bg-success">Đã đăng nhập</span>
+                    </p>
+                    <p class="text-muted mb-0" th:unless="${loggedIn}">
+                        <a href="/login" class="text-accent">Đăng nhập</a> để nộp bài và xem lịch sử chấm điểm.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- REST Exercises -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <h3 class="mb-3 protocol-header">
+                <span class="protocol-badge bg-rest">REST</span>
+                <span class="ms-2">Bài tập REST API</span>
+            </h3>
+        </div>
+        <div class="col-md-4 mb-3">
+            <div class="card card-exercise h-100">
+                <div class="card-body">
+                    <div class="d-flex align-items-center mb-2">
+                        <span class="exercise-number">1</span>
+                        <h5 class="card-title mb-0 ms-2">Tính tổng dãy số nguyên</h5>
+                    </div>
+                    <p class="card-text text-muted small">Nhận danh sách số nguyên, tính tổng và gửi kết quả.</p>
+                    <div class="mb-2">
+                        <code class="code-tag">4siaIVgn</code>
+                    </div>
+                </div>
+                <div class="card-footer bg-transparent border-top border-secondary">
+                    <a href="/exercise/4siaIVgn" class="btn btn-accent btn-sm w-100">
+                        <i class="bi bi-arrow-right me-1"></i> Làm bài
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-3">
+            <div class="card card-exercise h-100">
+                <div class="card-body">
+                    <div class="d-flex align-items-center mb-2">
+                        <span class="exercise-number">2</span>
+                        <h5 class="card-title mb-0 ms-2">Sắp xếp từ alphabet</h5>
+                    </div>
+                    <p class="card-text text-muted small">Nhận chuỗi các từ, sắp xếp theo thứ tự alphabet.</p>
+                    <div class="mb-2">
+                        <code class="code-tag">oPW4mpqm</code>
+                    </div>
+                </div>
+                <div class="card-footer bg-transparent border-top border-secondary">
+                    <a href="/exercise/oPW4mpqm" class="btn btn-accent btn-sm w-100">
+                        <i class="bi bi-arrow-right me-1"></i> Làm bài
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-3">
+            <div class="card card-exercise h-100">
+                <div class="card-body">
+                    <div class="d-flex align-items-center mb-2">
+                        <span class="exercise-number">3</span>
+                        <h5 class="card-title mb-0 ms-2">Tính giá cuối sản phẩm</h5>
+                    </div>
+                    <p class="card-text text-muted small">Nhận thông tin sản phẩm, tính giá cuối cùng sau thuế & giảm giá.</p>
+                    <div class="mb-2">
+                        <code class="code-tag">2ucfcULf</code>
+                    </div>
+                </div>
+                <div class="card-footer bg-transparent border-top border-secondary">
+                    <a href="/exercise/2ucfcULf" class="btn btn-accent btn-sm w-100">
+                        <i class="bi bi-arrow-right me-1"></i> Làm bài
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- gRPC Exercises -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <h3 class="mb-3 protocol-header">
+                <span class="protocol-badge bg-grpc">gRPC</span>
+                <span class="ms-2">Bài tập gRPC</span>
+            </h3>
+        </div>
+        <div class="col-md-4 mb-3">
+            <div class="card card-exercise h-100">
+                <div class="card-body">
+                    <div class="d-flex align-items-center mb-2">
+                        <span class="exercise-number">4</span>
+                        <h5 class="card-title mb-0 ms-2">Tính tổng (gRPC)</h5>
+                    </div>
+                    <p class="card-text text-muted small">Sử dụng gRPC client. Không hỗ trợ trực tiếp trên trình duyệt.</p>
+                    <div class="mb-2">
+                        <code class="code-tag">kpFm4QvE</code>
+                    </div>
+                </div>
+                <div class="card-footer bg-transparent border-top border-secondary">
+                    <a href="/exercise/kpFm4QvE" class="btn btn-outline-info btn-sm w-100">
+                        <i class="bi bi-info-circle me-1"></i> Xem chi tiết
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-3">
+            <div class="card card-exercise h-100">
+                <div class="card-body">
+                    <div class="d-flex align-items-center mb-2">
+                        <span class="exercise-number">5</span>
+                        <h5 class="card-title mb-0 ms-2">Sắp xếp từ (gRPC)</h5>
+                    </div>
+                    <p class="card-text text-muted small">Sử dụng gRPC client. Không hỗ trợ trực tiếp trên trình duyệt.</p>
+                    <div class="mb-2">
+                        <code class="code-tag">0VdN4dph</code>
+                    </div>
+                </div>
+                <div class="card-footer bg-transparent border-top border-secondary">
+                    <a href="/exercise/0VdN4dph" class="btn btn-outline-info btn-sm w-100">
+                        <i class="bi bi-info-circle me-1"></i> Xem chi tiết
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-3">
+            <div class="card card-exercise h-100">
+                <div class="card-body">
+                    <div class="d-flex align-items-center mb-2">
+                        <span class="exercise-number">6</span>
+                        <h5 class="card-title mb-0 ms-2">Giá cuối (gRPC)</h5>
+                    </div>
+                    <p class="card-text text-muted small">Sử dụng gRPC client. Không hỗ trợ trực tiếp trên trình duyệt.</p>
+                    <div class="mb-2">
+                        <code class="code-tag">1zog4SNL</code>
+                    </div>
+                </div>
+                <div class="card-footer bg-transparent border-top border-secondary">
+                    <a href="/exercise/1zog4SNL" class="btn btn-outline-info btn-sm w-100">
+                        <i class="bi bi-info-circle me-1"></i> Xem chi tiết
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SOAP Exercises -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <h3 class="mb-3 protocol-header">
+                <span class="protocol-badge bg-soap">SOAP</span>
+                <span class="ms-2">Bài tập SOAP</span>
+            </h3>
+        </div>
+        <div class="col-md-4 mb-3">
+            <div class="card card-exercise h-100">
+                <div class="card-body">
+                    <div class="d-flex align-items-center mb-2">
+                        <span class="exercise-number">7</span>
+                        <h5 class="card-title mb-0 ms-2">Tính tổng (SOAP)</h5>
+                    </div>
+                    <p class="card-text text-muted small">Sử dụng SOAP client. Không hỗ trợ trực tiếp trên trình duyệt.</p>
+                    <div class="mb-2">
+                        <code class="code-tag">yyhHZUpt</code>
+                    </div>
+                </div>
+                <div class="card-footer bg-transparent border-top border-secondary">
+                    <a href="/exercise/yyhHZUpt" class="btn btn-outline-warning btn-sm w-100">
+                        <i class="bi bi-info-circle me-1"></i> Xem chi tiết
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-3">
+            <div class="card card-exercise h-100">
+                <div class="card-body">
+                    <div class="d-flex align-items-center mb-2">
+                        <span class="exercise-number">8</span>
+                        <h5 class="card-title mb-0 ms-2">Đảo ngược chuỗi (SOAP)</h5>
+                    </div>
+                    <p class="card-text text-muted small">Sử dụng SOAP client. Không hỗ trợ trực tiếp trên trình duyệt.</p>
+                    <div class="mb-2">
+                        <code class="code-tag">qvCGMEhW</code>
+                    </div>
+                </div>
+                <div class="card-footer bg-transparent border-top border-secondary">
+                    <a href="/exercise/qvCGMEhW" class="btn btn-outline-warning btn-sm w-100">
+                        <i class="bi bi-info-circle me-1"></i> Xem chi tiết
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-3">
+            <div class="card card-exercise h-100">
+                <div class="card-body">
+                    <div class="d-flex align-items-center mb-2">
+                        <span class="exercise-number">9</span>
+                        <h5 class="card-title mb-0 ms-2">Giá cuối (SOAP)</h5>
+                    </div>
+                    <p class="card-text text-muted small">Sử dụng SOAP client. Không hỗ trợ trực tiếp trên trình duyệt.</p>
+                    <div class="mb-2">
+                        <code class="code-tag">7u07dNqg</code>
+                    </div>
+                </div>
+                <div class="card-footer bg-transparent border-top border-secondary">
+                    <a href="/exercise/7u07dNqg" class="btn btn-outline-warning btn-sm w-100">
+                        <i class="bi bi-info-circle me-1"></i> Xem chi tiết
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quick Links -->
+    <div class="row mb-4" th:if="${loggedIn}">
+        <div class="col-12">
+            <div class="card card-glass">
+                <div class="card-body p-3">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span class="text-muted"><i class="bi bi-clock-history me-1"></i> Xem lịch sử nộp bài của bạn</span>
+                        <a href="/submissions" class="btn btn-outline-light btn-sm">
+                            <i class="bi bi-arrow-right me-1"></i> Lịch sử nộp bài
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer th:replace="~{layout :: footer}"></footer>
+<th:block th:replace="~{layout :: scripts}"></th:block>
+</body>
+</html>

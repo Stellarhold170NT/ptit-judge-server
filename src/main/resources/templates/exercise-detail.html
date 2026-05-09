@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="vi">
+<head th:replace="~{layout :: head(${exercise != null ? exercise.title + ' - PTIT Judge' : 'Bài tập - PTIT Judge'})}"></head>
+<body class="bg-dark text-light">
+<nav th:replace="~{layout :: nav(${loggedIn}, ${displayName})}"></nav>
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-lg-8 mx-auto">
+            <div class="card card-glass mb-4">
+                <div class="card-body p-4">
+                    <div class="d-flex align-items-center mb-3">
+                        <a href="/" class="text-muted me-3"><i class="bi bi-arrow-left fs-5"></i></a>
+                        <div>
+                            <h3 class="mb-0 fw-bold" th:text="${exercise.title}">Bài tập</h3>
+                            <div class="mt-1">
+                                <span class="protocol-badge"
+                                      th:classappend="${isRest} ? 'bg-rest' : (${isGrpc} ? 'bg-grpc' : 'bg-soap')"
+                                      th:text="${exercise.protocol}">REST</span>
+                                <code class="code-tag ms-2" th:text="${qCode}">qCode</code>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-muted mb-0" th:text="${exercise.description}">Mô tả bài tập</p>
+                </div>
+            </div>
+
+            <div th:if="${isRest}">
+                <div th:if="${!loggedIn}" class="alert alert-warning">
+                    <i class="bi bi-exclamation-triangle-fill me-1"></i>
+                    Bạn cần <a href="/login" class="text-accent">đăng nhập</a> để lấy dữ liệu và nộp bài.
+                </div>
+
+                <div th:if="${loggedIn}" class="card card-glass mb-4">
+                    <div class="card-body p-4">
+                        <h5 class="fw-bold mb-3"><i class="bi bi-cloud-download me-2"></i>Lấy dữ liệu bài tập</h5>
+                        <p class="text-muted small mb-3">Nhấn nút bên dưới để nhận dữ liệu đầu vào cho bài tập.</p>
+                        <form method="post" th:action="@{'/exercise/' + ${qCode} + '/request'}">
+                            <button type="submit" class="btn btn-accent">
+                                <i class="bi bi-cloud-download me-1"></i> Lấy dữ liệu
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <div th:if="${dataRequested}" class="card card-glass mb-4">
+                    <div class="card-body p-4">
+                        <h5 class="fw-bold mb-3"><i class="bi bi-database me-2"></i>Dữ liệu nhận được</h5>
+                        <div class="data-display mb-3">
+                            <div class="mb-2">
+                                <span class="text-muted small">Request ID:</span>
+                                <code class="code-tag ms-1" th:text="${requestId}">request-id</code>
+                            </div>
+                            <div>
+                                <span class="text-muted small">Dữ liệu:</span>
+                                <div class="data-box mt-1" th:text="${exerciseData}">data</div>
+                            </div>
+                        </div>
+
+                        <h5 class="fw-bold mb-3"><i class="bi bi-send me-2"></i>Nộp đáp án</h5>
+                        <form method="post" th:action="@{'/exercise/' + ${qCode} + '/submit'}">
+                            <input type="hidden" name="requestId" th:value="${requestId}"/>
+                            <div class="mb-3">
+                                <label for="answer" class="form-label text-muted">Đáp án của bạn</label>
+                                <input type="text" class="form-control bg-dark text-light border-secondary" id="answer" name="answer"
+                                       placeholder="Nhập đáp án..." required/>
+                            </div>
+                            <button type="submit" class="btn btn-success">
+                                <i class="bi bi-check-circle me-1"></i> Nộp bài
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <div th:if="${submitResult}" class="card card-glass mb-4">
+                    <div class="card-body p-4">
+                        <div th:if="${submitResult == 'AC'}" class="text-center">
+                            <div class="result-icon result-ac">✓</div>
+                            <h4 class="fw-bold text-success mt-2">Accepted</h4>
+                            <p class="text-muted">Bài làm của bạn đã được chấp nhận!</p>
+                        </div>
+                        <div th:if="${submitResult == 'WA'}" class="text-center">
+                            <div class="result-icon result-wa">✗</div>
+                            <h4 class="fw-bold text-danger mt-2">Wrong Answer</h4>
+                            <p class="text-muted" th:text="${submitMessage}">Đáp án không chính xác.</p>
+                            <div th:if="${correctAnswer}" class="mt-2">
+                                <span class="text-muted">Đáp án đúng: </span>
+                                <code class="code-tag" th:text="${correctAnswer}">answer</code>
+                            </div>
+                        </div>
+                        <div th:if="${submitResult == 'RTE'}" class="text-center">
+                            <div class="result-icon result-rte">!</div>
+                            <h4 class="fw-bold text-warning mt-2">Runtime Error</h4>
+                            <p class="text-muted" th:text="${submitMessage}">Có lỗi xảy ra.</p>
+                        </div>
+                        <div class="text-center mt-3">
+                            <a th:href="@{'/exercise/' + ${qCode}}" class="btn btn-outline-light btn-sm">
+                                <i class="bi bi-arrow-counterclockwise me-1"></i> Thử lại
+                            </a>
+                            <a href="/submissions" class="btn btn-outline-info btn-sm ms-2">
+                                <i class="bi bi-clock-history me-1"></i> Xem lịch sử
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div th:if="${error}" class="alert alert-danger">
+                    <i class="bi bi-exclamation-triangle-fill me-1"></i>
+                    <span th:text="${error}">Lỗi</span>
+                </div>
+            </div>
+
+            <div th:if="${isGrpc}" class="card card-glass mb-4">
+                <div class="card-body p-4 text-center">
+                    <div class="protocol-badge bg-grpc fs-4 mb-3">gRPC</div>
+                    <h4 class="fw-bold">Yêu cầu gRPC Client</h4>
+                    <p class="text-muted">Bài tập này sử dụng giao thức gRPC và không thể thực hiện trực tiếp trên trình duyệt web.</p>
+                    <p class="text-muted">Bạn cần sử dụng gRPC client (ví dụ: <code class="code-tag">grpcurl</code> hoặc Java gRPC client) để kết nối đến server qua port <strong>2240</strong>.</p>
+                    <div class="mt-4 text-start">
+                        <h6 class="text-muted">Ví dụ grpcurl:</h6>
+                        <div class="data-box">
+                            <code>grpcurl -plaintext localhost:2240 JudgeService/getData</code>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div th:if="${isSoap}" class="card card-glass mb-4">
+                <div class="card-body p-4 text-center">
+                    <div class="protocol-badge bg-soap fs-4 mb-3">SOAP</div>
+                    <h4 class="fw-bold">Yêu cầu SOAP Client</h4>
+                    <p class="text-muted">Bài tập này sử dụng giao thức SOAP và không thể thực hiện trực tiếp trên trình duyệt web.</p>
+                    <p class="text-muted">Bạn cần sử dụng SOAP client (ví dụ: <code class="code-tag">soapui</code>, Postman, hoặc Java SOAP client) để gửi SOAP request.</p>
+                    <div class="mt-4 text-start">
+                        <h6 class="text-muted">WSDL Endpoint:</h6>
+                        <div class="data-box">
+                            <code>http://localhost:2230/ws/data.wsdl</code><br/>
+                            <code>http://localhost:2230/ws/character.wsdl</code><br/>
+                            <code>http://localhost:2230/ws/object.wsdl</code>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer th:replace="~{layout :: footer}"></footer>
+<th:block th:replace="~{layout :: scripts}"></th:block>
+</body>
+</html>

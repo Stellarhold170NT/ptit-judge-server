@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  judge-server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: judge-server
+    ports:
+      - "2230:2230"
+      - "2240:2240"
+    volumes:
+      - ./data:/app/data

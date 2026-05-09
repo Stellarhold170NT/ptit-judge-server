@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://ptit.vn/judge/soap/data"
+           xmlns:tns="http://ptit.vn/judge/soap/data" elementFormDefault="qualified">
+  <xs:element name="getDataRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="studentCode" type="xs:string"/>
+        <xs:element name="qCode" type="xs:string"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getDataResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="data" type="xs:string" maxOccurs="unbounded"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="submitDataIntRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="studentCode" type="xs:string"/>
+        <xs:element name="qCode" type="xs:string"/>
+        <xs:element name="sum" type="xs:int"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="submitDataIntResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="status" type="xs:string"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

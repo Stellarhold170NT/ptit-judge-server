@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://ptit.vn/judge/soap/object"
+           xmlns:tns="http://ptit.vn/judge/soap/object" elementFormDefault="qualified">
+  <xs:element name="requestProductY">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="studentCode" type="xs:string"/>
+        <xs:element name="qCode" type="xs:string"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="requestProductYResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="productY" type="tns:ProductY"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="submitProductY">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="studentCode" type="xs:string"/>
+        <xs:element name="qCode" type="xs:string"/>
+        <xs:element name="productY" type="tns:ProductY"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="submitProductYResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="status" type="xs:string"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="ProductY">
+    <xs:sequence>
+      <xs:element name="name" type="xs:string"/>
+      <xs:element name="price" type="xs:double"/>
+      <xs:element name="taxRate" type="xs:double"/>
+      <xs:element name="discount" type="xs:double"/>
+      <xs:element name="finalPrice" type="xs:double"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

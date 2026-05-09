@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="vi">
+<head th:replace="~{layout :: head('Đăng ký - PTIT Judge')}"></head>
+<body class="bg-dark text-light">
+<nav th:replace="~{layout :: nav(${loggedIn != null ? loggedIn : false}, ${displayName != null ? displayName : ''})}"></nav>
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card card-glass">
+                <div class="card-body p-4">
+                    <h2 class="text-center mb-1 fw-bold brand-text">Đăng ký</h2>
+                    <p class="text-center text-muted mb-4">Tạo tài khoản để bắt đầu luyện tập</p>
+
+                    <div th:if="${error}" class="alert alert-danger" role="alert">
+                        <i class="bi bi-exclamation-triangle-fill me-1"></i>
+                        <span th:text="${error}">Lỗi đăng ký</span>
+                    </div>
+
+                    <form method="post" action="/register">
+                        <div class="mb-3">
+                            <label for="displayName" class="form-label text-muted">Họ và tên</label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-dark border-secondary text-muted"><i class="bi bi-person"></i></span>
+                                <input type="text" class="form-control bg-dark text-light border-secondary" id="displayName" name="displayName"
+                                       placeholder="Nguyễn Văn A"
+                                       th:value="${displayName != null ? displayName : ''}" required/>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label text-muted">Email</label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-dark border-secondary text-muted"><i class="bi bi-envelope"></i></span>
+                                <input type="email" class="form-control bg-dark text-light border-secondary" id="email" name="email"
+                                       placeholder="sinhvien@ptit.edu.vn"
+                                       th:value="${email != null ? email : ''}" required/>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="studentCode" class="form-label text-muted">Mã sinh viên</label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-dark border-secondary text-muted"><i class="bi bi-badge-vo"></i></span>
+                                <input type="text" class="form-control bg-dark text-light border-secondary" id="studentCode" name="studentCode"
+                                       placeholder="B21DCCN123"
+                                       th:value="${studentCode != null ? studentCode : ''}" required/>
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <label for="password" class="form-label text-muted">Mật khẩu</label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-dark border-secondary text-muted"><i class="bi bi-lock"></i></span>
+                                <input type="password" class="form-control bg-dark text-light border-secondary" id="password" name="password"
+                                       placeholder="••••••••" required/>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-accent w-100 py-2 fw-semibold">
+                            <i class="bi bi-person-plus me-1"></i> Tạo tài khoản
+                        </button>
+                    </form>
+
+                    <div class="text-center mt-3">
+                        <span class="text-muted">Đã có tài khoản?</span>
+                        <a href="/login" class="text-accent ms-1">Đăng nhập</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer th:replace="~{layout :: footer}"></footer>
+<th:block th:replace="~{layout :: scripts}"></th:block>
+</body>
+</html>

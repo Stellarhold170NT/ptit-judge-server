@@ -1,0 +1,9 @@
+server:
+  port: 2230
+
+grpc:
+  server:
+    port: 2240
+
+judge:
+  data-dir: ./data
