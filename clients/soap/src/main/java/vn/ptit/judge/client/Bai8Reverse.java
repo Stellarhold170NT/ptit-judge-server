@@ -12,8 +12,8 @@ package vn.ptit.judge.client;
 
 public class Bai8Reverse {
     public static void main(String[] args) {
-        CharacterService_Service service = new CharacterService_Service();
-        CharacterService port = service.getCharacterServicePort();
+        CharacterService service = new CharacterService();
+        SoapCharacterService port = service.getSoapCharacterServicePort();
 
         String studentCode = "B22DCCN393";
         String qCode = "qvCGMEhW";
@@ -24,7 +24,7 @@ public class Bai8Reverse {
         String reversed = new StringBuilder(data).reverse().toString();
         System.out.println("Chuoi dao nguoc: " + reversed);
 
-        String status = port.submitString(studentCode, qCode, reversed);
-        System.out.println("Ket qua tu Server: " + status);
+        port.submitString(studentCode, qCode, reversed);
+        System.out.println("Ket qua da duoc gui.");
     }
 }

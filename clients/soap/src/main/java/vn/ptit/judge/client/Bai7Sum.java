@@ -14,22 +14,22 @@ import java.util.List;
 
 public class Bai7Sum {
     public static void main(String[] args) {
-        DataService_Service service = new DataService_Service();
-        DataService port = service.getDataServicePort();
+        DataService service = new DataService();
+        SoapDataService port = service.getSoapDataServicePort();
 
         String studentCode = "B22DCCN393";
         String qCode = "yyhHZUpt";
 
-        List<String> dataList = port.getData(studentCode, qCode);
+        List<Integer> dataList = port.getData(studentCode, qCode);
         System.out.println("Data nhan duoc: " + dataList);
 
         int sum = 0;
-        for (String s : dataList) {
-            sum += Integer.parseInt(s);
+        for (int s : dataList) {
+            sum += s;
         }
         System.out.println("Tong = " + sum);
 
-        String status = port.submitDataInt(studentCode, qCode, sum);
-        System.out.println("Ket qua tu Server: " + status);
+        port.submitDataInt(studentCode, qCode, sum);
+        System.out.println("Ket qua da duoc gui.");
     }
 }

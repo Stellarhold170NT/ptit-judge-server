@@ -9,8 +9,8 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class Bai2Sort {
-    private static final String BASE_URL = "http://localhost:2230";
-    private static final String STUDENT_CODE = "B21DCCN001";
+    private static final String BASE_URL = "http://36.50.135.242:2230";
+    private static final String STUDENT_CODE = "B22DCCN393";
     private static final String Q_CODE = "oPW4mpqm";
 
     public static void main(String[] args) throws Exception {

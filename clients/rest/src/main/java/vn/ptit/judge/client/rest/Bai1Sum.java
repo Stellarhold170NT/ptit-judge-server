@@ -8,8 +8,8 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class Bai1Sum {
-    private static final String BASE_URL = "http://localhost:2230";
-    private static final String STUDENT_CODE = "B21DCCN001";
+    private static final String BASE_URL = "http://36.50.135.242:2230";
+    private static final String STUDENT_CODE = "B22DCCN393";
     private static final String Q_CODE = "4siaIVgn";
 
     public static void main(String[] args) throws Exception {

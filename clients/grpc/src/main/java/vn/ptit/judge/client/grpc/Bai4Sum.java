@@ -5,13 +5,14 @@ import GRPC.JudgeResponse;
 import GRPC.JudgeServiceGrpc;
 import GRPC.SubmitRequest;
 import GRPC.SubmitResponse;
+
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 
 public class Bai4Sum {
-    private static final String HOST = "localhost";
+    private static final String HOST = "36.50.135.242";
     private static final int PORT = 2240;
-    private static final String STUDENT_CODE = "B21DCCN001";
+    private static final String STUDENT_CODE = "B22DCCN393";
     private static final String Q_CODE = "kpFm4QvE";
 
     public static void main(String[] args) {

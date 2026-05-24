@@ -12,25 +12,24 @@ package vn.ptit.judge.client;
 
 public class Bai9Object {
     public static void main(String[] args) {
-        ObjectService_Service service = new ObjectService_Service();
-        ObjectService port = service.getObjectServicePort();
+        ObjectService service = new ObjectService();
+        SoapObjectService port = service.getSoapObjectServicePort();
 
         String studentCode = "B22DCCN393";
         String qCode = "7u07dNqg";
 
         ProductY product = port.requestProductY(studentCode, qCode);
-        System.out.println("Product: " + product.getName()
-                + " | price=" + product.getPrice()
+        System.out.println("Product: price=" + product.getPrice()
                 + " | taxRate=" + product.getTaxRate()
                 + " | discount=" + product.getDiscount());
 
-        double finalPrice = product.getPrice()
-                * (1 + product.getTaxRate() / 100)
-                * (1 - product.getDiscount() / 100);
+        float finalPrice = product.getPrice()
+                * (1 + product.getTaxRate() / 100.0f)
+                * (1 - product.getDiscount() / 100.0f);
         product.setFinalPrice(finalPrice);
-        System.out.println("Gia cuoi = " + String.format("%.2f", finalPrice));
+        System.out.println("Gia cuoi = " + String.format(java.util.Locale.US, "%.2f", finalPrice));
 
-        String status = port.submitProductY(studentCode, qCode, product);
-        System.out.println("Ket qua tu Server: " + status);
+        port.submitProductY(studentCode, qCode, product);
+        System.out.println("Ket qua da duoc gui.");
     }
 }
